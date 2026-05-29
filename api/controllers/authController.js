@@ -64,8 +64,8 @@ export const signin = async (req, res) => {
         }
         return res.status(200).cookie("token", Token, {
             httpOnly: true,
-            secure: false,
-            sameSite: "strict",
+            secure: process.env.NODE_ENV ==="development" ? false:true,
+            sameSite: process.env.NODE_ENV ==="development" ? "strict":"none",
             maxAge: 7 * 24 * 60 * 60 * 1000
         })
             .json({
